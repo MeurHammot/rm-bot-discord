@@ -5,7 +5,7 @@ const client = new commando.Client({
 	owner: '232256294873071618',
 	commandPrefix: '!'
 });
-
+//Init listeners
 client
 	.on('error', console.error)
 	.on('warn', console.warn)
@@ -45,9 +45,9 @@ client
 			${guild ? `для гільдії ${guild.name} (${guild.id})` : 'для всіх'}.
 		`);
 	});
-    
+//Register Groups    
 client.registry
-	.registerGroup('math', 'Математика').registerGroup('music', 'Музика')
+	.registerGroup('math', 'Математика').registerGroup('music', 'Музика').registerGroup('music', 'Музика')
 	.registerDefaults()
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 client.login('Mjg0ODYxNTk4MzUzNTg4MjI0.DDrpfg.oMnq2-huheR_GcJusGFd9YjyqOE');
