@@ -108,7 +108,14 @@ module.exports = class PlayMusicCommand extends commando.Command {
 			item.msg.channel.sendMessage(`Так-с, на черзі **${info.title}**`);
 		});
 		dispatcher.on('end', () => {
-			queue.shift();
+			if(voice.repeat === true){
+				var shift = queue.shift();
+				var url = shift.url;
+				var msg = shift.msg;
+				connData.queue.push({ url, msg });
+			} else {
+				queue.shift();
+			}
 			doQueue(connData);
 		});
 		dispatcher.on('error', (...e) => console.log('dispatcher', ...e));
