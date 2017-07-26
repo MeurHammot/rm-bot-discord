@@ -21,10 +21,10 @@ module.exports = class PlaylistCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-            var conn = connData.conn;
-			if(conn.dispatcher){
+            const conn = connData.conn;
+			if(connData.dispatcher){
                 const queue = connData.queue;
 				msg.reply('Зачекай хвильку, згадаю що там...');
 				var result = `Усього пісень: ${queue.length}. Найближчі пісні:`;

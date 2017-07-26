@@ -20,11 +20,10 @@ module.exports = class SkipSongCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-			var conn = connData.conn;
-			if(conn.dispatcher){
-				conn.dispatcher.end();
+			if(connData.dispatcher){
+				connData.dispatcher.end();
 			} else {
 				msg.reply(`Та ти пісню спочатку увімкни, агов!`);
 			}

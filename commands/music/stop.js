@@ -20,15 +20,16 @@ module.exports = class StopVoiceCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-			var conn = connData.conn;
+			const conn = connData.conn;
             const queue = connData.queue;
 			if(queue.length > 1){
 				queue.splice(1, queue.length);
 			}
-			if(conn.dispatcher){
-				conn.dispatcher.end();
+			if(connData.dispatcher){
+				connData.repeat = false;
+				connData.dispatcher.end();
 				msg.reply(`Готово, більше воно не грає.`);
 			} else {
 				msg.reply(`Да воно й так не грає.`);

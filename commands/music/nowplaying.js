@@ -21,10 +21,10 @@ module.exports = class NowPlayingCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-            var conn = connData.conn;
-			if(conn.dispatcher){
+            const conn = connData.conn;
+			if(connData.dispatcher){
                 const queue = connData.queue;
 		        const item = queue[0];
                 ytdl.getInfo(item.url, (err, info) => {

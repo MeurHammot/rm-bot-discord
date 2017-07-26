@@ -56,7 +56,7 @@ module.exports = class PlayMusicCommand extends commando.Command {
 					return;
 				}
 				queue.push({ url, msg });
-				if (conn.dispatcher) {
+				if (connData.dispatcher) {
 					msg.reply(`Оке, чекай, тут ще ${queue.length - 1} пісень перед твоєю.`);
 					return;
 				}
@@ -69,7 +69,7 @@ module.exports = class PlayMusicCommand extends commando.Command {
 						queue.push({ url, msg });
 					}
 					msg.reply(`Додав ${playlistItems.length} пісень в чергу. Нічого собі.`);
-					if (conn.dispatcher) {
+					if (connData.dispatcher) {
 						msg.reply(`Оке, чекай, тут ще ${queue.length - 1} пісень перед твоєю.`);
 						return;
 					}
@@ -84,7 +84,7 @@ module.exports = class PlayMusicCommand extends commando.Command {
 					console.log(info.items[0].webpage_url);
 					msg.reply(`Додав **${info.items[0].title}.**`);
 					console.log(url);
-					if (conn.dispatcher) {
+					if (connData.dispatcher) {
 						msg.reply(`Оке, чекай, тут ще ${queue.length - 1} пісень перед твоєю.`);
 						return;
 					}
@@ -108,7 +108,7 @@ module.exports = class PlayMusicCommand extends commando.Command {
 			item.msg.channel.sendMessage(`Так-с, на черзі **${info.title}**`);
 		});
 		dispatcher.on('end', () => {
-			if(voice.repeat === true){
+			if(connData.repeat === true){
 				var shift = queue.shift();
 				var url = shift.url;
 				var msg = shift.msg;

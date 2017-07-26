@@ -20,11 +20,15 @@ module.exports = class LeaveVoiceCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-			var conn = connData.conn;
-			if(conn.dispatcher){
-				conn.dispatcher.end();
+			const conn = connData.conn;
+			const queue = connData.queue;
+			if(queue.length > 1){
+				queue.splice(1, queue.length);
+			}
+			if(connData.dispatcher){
+				connData.dispatcher.end();
 			}
 			conn.channel.leave();
 			msg.reply(`Бувай!`);

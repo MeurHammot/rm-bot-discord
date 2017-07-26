@@ -3,7 +3,6 @@ const oneLine = require('common-tags').oneLine;
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 const connections = new Map();
-var repeat = false;
 
 module.exports = class JoinVoiceCommand extends commando.Command {
 	constructor(client) {
@@ -26,7 +25,8 @@ module.exports = class JoinVoiceCommand extends commando.Command {
 			if(true){
 				channel.join().then(conn => {
 					conn.player.on('error', (...e) => console.log('player', ...e));
-					if (!connections.has(msg.guild.id)) connections.set(msg.guild.id, { conn, queue: [] });
+					var repeat = false;
+					if (!connections.has(msg.guild.id)) connections.set(msg.guild.id, { conn, queue: [], repeat });
 					msg.reply('Приєднався!');
 				});
 			}
@@ -36,4 +36,3 @@ module.exports = class JoinVoiceCommand extends commando.Command {
 	}
 };
 module.exports.connections = connections;
-module.exports.repeat = repeat;

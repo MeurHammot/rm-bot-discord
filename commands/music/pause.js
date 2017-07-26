@@ -20,12 +20,12 @@ module.exports = class PauseSongCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-            var conn = connData.conn;
-			if(conn.dispatcher){
-                if(!conn.dispatcher.paused){
-                    conn.dispatcher.pause();
+            const conn = connData.conn;
+			if(connData.dispatcher){
+                if(!connData.dispatcher.paused){
+                    connData.dispatcher.pause();
                 } else {
                     msg.reply(`Та пісня і так на паузі, шо ти це саме!`);
                 }

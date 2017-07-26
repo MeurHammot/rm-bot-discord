@@ -20,12 +20,12 @@ module.exports = class UnpauseSongCommand extends commando.Command {
 	}
 
 	async run(msg, args) {
-		var connData = player.connections.get(msg.guild.id);
+		const connData = player.connections.get(msg.guild.id);
 		if(connData){
-            var conn = connData.conn;
-			if(conn.dispatcher){
-                if(conn.dispatcher.paused){
-                    conn.dispatcher.resume();
+            const conn = connData.conn;
+			if(connData.dispatcher){
+                if(connData.dispatcher.paused){
+                    connData.dispatcher.resume();
                 } else {
                     msg.reply(`Та я й так граю, чого докопався?!`);
                 }
