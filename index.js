@@ -47,7 +47,7 @@ client
 	});
 //Register Groups    
 client.registry
-	.registerGroup('math', 'Математика').registerGroup('music', 'Музика').registerGroup('music', 'Музика')
+	.registerGroup('math', 'Математика').registerGroup('music', 'Музика').registerGroup('google', 'Google')
 	.registerDefaults()
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 client.login('Mjg0ODYxNTk4MzUzNTg4MjI0.DDrpfg.oMnq2-huheR_GcJusGFd9YjyqOE');
